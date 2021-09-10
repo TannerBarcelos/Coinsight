@@ -11,7 +11,7 @@ import {
   clearWatchlist,
 } from "../../helpers/watchlistManipulators";
 
-import "./Coins.css";
+import { formatPricing } from "../../helpers/formatPricing";
 
 import {
   Button,
@@ -86,13 +86,13 @@ const CoinDetails = () => {
       <Container className="coins_container">
         <div className="watchlist">
           <div className="watchlist-top-container">
-            <h6>Watchlist</h6>
+            <h6>My Watchlist</h6>
             {watchList && watchList.length > 0 ? (
               <Button
-                className="cta"
+                className="cta cta-watch-list"
                 onClick={() => clearWatchlist(setWatchList)}
               >
-                Clear Watchlist
+                Clear
               </Button>
             ) : null}
           </div>
@@ -123,9 +123,7 @@ const CoinDetails = () => {
               </div>
             ))
           ) : (
-            <p className="addTW">
-              Add to your watchlist to stay on top of price changes
-            </p>
+            <p className="addTW">Add to your watchlist</p>
           )}
         </div>
 
@@ -184,19 +182,24 @@ const CoinDetails = () => {
         <Table style={{ marginTop: "4rem" }}>
           <thead>
             <tr>
+              <th>Rank (#)</th>
               <th>Symbol</th>
               <th>Coin</th>
               <th>Current Price</th>
-              <th>Market Cap Rank</th>
-              <th>Get More Insights</th>
+              <th>Market Cap ($)</th>
               <th>Add to Watchlist</th>
+              <th>Get More Insights</th>
             </tr>
           </thead>
           <tbody>
             {coins &&
               coins.map((coin) => {
+                // console.log(coin) <-- uncomment to see other useful data for later features
                 return (
                   <tr key={coin.id}>
+                    <td className="coin-market">
+                      <span>{coin.market_cap_rank}</span>
+                    </td>
                     <td className="coin-symbol">
                       <span>{coin.symbol}</span>
                     </td>
@@ -210,14 +213,7 @@ const CoinDetails = () => {
                       <span>$ {coin.current_price.toFixed(2)}</span>
                     </td>
                     <td className="coin-market">
-                      <span>{coin.market_cap_rank}</span>
-                    </td>
-                    <td className="coin-link">
-                      <div>
-                        <Link to={`/coin/${coin.id}`}>
-                          <Button color="primary">See more</Button>
-                        </Link>
-                      </div>
+                      <span>{formatPricing(coin.market_cap)}</span>
                     </td>
                     <td>
                       <BsFillBookmarkFill
@@ -226,6 +222,13 @@ const CoinDetails = () => {
                           addToWatchlist(coin, setWatchList, watchList)
                         }
                       />
+                    </td>
+                    <td className="coin-link">
+                      <div>
+                        <Link to={`/coin/${coin.id}`}>
+                          <Button color="primary">See more</Button>
+                        </Link>
+                      </div>
                     </td>
                   </tr>
                 );
