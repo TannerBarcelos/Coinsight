@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Dosis&display=swap");
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Dosis', sans-serif;
+  font-family: "Dosis", sans-serif;
   color: rgba(255, 255, 255, 0.694) !important;
 }
 
@@ -212,7 +212,7 @@ th {
   justify-content: center;
 }
 
-.coin-link{
+.coin-link {
   display: flex;
   width: 5rem;
   height: 40px;
@@ -223,10 +223,9 @@ th {
   margin: 5px auto;
 }
 
-.coin-link:hover{
+.coin-link:hover {
   text-decoration: none;
 }
-
 
 .page:hover {
   background-color: #047dfea5 !important;
@@ -268,7 +267,6 @@ th {
 
 .watchlist h6 {
   font-size: 1.5rem;
-
 }
 .watchlist p.addTW {
   font-size: 12px;
@@ -341,4 +339,56 @@ th {
 .more-info,
 .remove-coin {
   cursor: pointer;
+}
+
+.trending-coins {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 9px;
+}
+.trendy {
+  border-radius: 5px;
+  /* center this picture */
+  margin-left: 30%;
+  margin-top: 10%;
+  margin-bottom: 10%;
+  cursor: pointer;
+}
+.trending-coin {
+  border-radius: 5px;
+  min-width: 10rem;
+  min-height: 15rem;
+  border: solid 1px black;
+  margin-left: 1rem;
+  animation: slideDown 0.5s ease-in-out;
+}
+
+.trending-coin:hover {
+  animation: slideUp 0.2s ease-in-out;
+  animation-fill-mode: forwards;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.trending-coin {
+  background: rgba(19, 31, 82, 0.742);
+}
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+@keyframes slideDown {
+  0% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }

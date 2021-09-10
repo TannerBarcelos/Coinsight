@@ -55,10 +55,22 @@ const CoinDetails = () => {
     }
   };
 
+  const capitalizeWithHyphenFormatter = (input) => {
+    const words = input.split(/(\s|-)+/),
+      output = [];
+
+    for (let i = 0, len = words.length; i < len; i += 1) {
+      output.push(words[i][0].toUpperCase() + words[i].toLowerCase().substr(1));
+    }
+
+    return output.join("");
+  };
   useEffect(() => {
     const getTrendingCoins = async () => {
       try {
-        const { data: {coins} } = await axios.get(`${process.env.REACT_APP_TRENDING_COINS}`);
+        const {
+          data: { coins },
+        } = await axios.get(`${process.env.REACT_APP_TRENDING_COINS}`);
         setTrendingCoins(coins);
         console.log(coins);
       } catch (error) {
@@ -70,6 +82,7 @@ const CoinDetails = () => {
       const { data } = await axios.get(
         `${process.env.REACT_APP_COINDETAILS_URL_ONE}${paginatedValue}${process.env.REACT_APP_COINDETAILS_URL_TWO}`
       );
+      console.log(data);
       setCoins(data);
       setIsLoading(false);
     };
@@ -164,17 +177,40 @@ const CoinDetails = () => {
           className="pagination-bar"
         />
         <div className="trending-container">
-          <h1 style={{ textAlign: "center" }}>Trending Coins</h1>
+          <h1 style={{ textAlign: "center" }}>Trending Coins 🔥</h1>
           <div className="trending-coins">
             {trendingCoins &&
-              trendingCoins.map(({item: {id, thumb, symbol}}) => { // destructure more
-                return <div className="trending-coin" key={id}>
-                  <img src={thumb} alt={id} />
-                  <p>
-                    {id} ({symbol})
-                  </p>
-                </div>
-              })}
+              trendingCoins.map(
+                ({
+                  item: {
+                    id,
+                    thumb,
+                    symbol,
+                    market_cap_rank,
+                    price_btc,
+                    small,
+                    large,
+                  },
+                }) => {
+                  // destructure more
+                  return (
+                    <div className="trending-coin" key={id}>
+                      <Link to={`/coin/${id}`}>
+                        <img src={small} alt={id} className="trendy" />
+                      </Link>
+                      <p style={{ textAlign: "center" }}>
+                        {capitalizeWithHyphenFormatter(id)} ({symbol})
+                      </p>
+                      <p style={{ textAlign: "center" }}>
+                        Market Cap Ranking: {market_cap_rank}
+                      </p>
+                      <p style={{ textAlign: "center" }}>
+                        Price {price_btc.toFixed(7)} ₿
+                      </p>
+                    </div>
+                  );
+                }
+              )}
           </div>
         </div>
         <Table style={{ marginTop: "4rem" }}>
@@ -221,10 +257,10 @@ const CoinDetails = () => {
                         }
                       />
                     </td>
-                    <td >
-                        <Link to={`/coin/${coin.id}`} className="coin-link">
-                          See more
-                        </Link>
+                    <td>
+                      <Link to={`/coin/${coin.id}`} className="coin-link">
+                        See more
+                      </Link>
                     </td>
                   </tr>
                 );
