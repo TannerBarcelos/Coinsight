@@ -13,8 +13,6 @@ import {
 
 import { formatPricing } from '../../helpers/formatPricing';
 
-import './Coins.css';
-
 import {
   Button,
   Container,
