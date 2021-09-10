@@ -37,8 +37,10 @@ const CoinDetails = () => {
   const [paginatedValue, setPaginatedValue] = useState(1); // allow pagination
   const [isLoading, setIsLoading] = useState(false);
   const [cryptoName, setCryptoName] = useState({});
+  const [trendingCoins, setTrendingCoins] = useState([]);
 
   const history = useHistory();
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setCryptoName({ ...cryptoName, [name]: value.replace(" ", "-") });
@@ -52,35 +54,31 @@ const CoinDetails = () => {
       history.push(`/coin/${cryptoName.crypto}`);
     }
   };
-  const [trendingCoins, setTrendingCoins] = useState([]);
+
   useEffect(() => {
     const getTrendingCoins = async () => {
       try {
-        const { data } = await axios.get(`${process.env.REACT_APP_TRENDING}`);
-        setTrendingCoins([...data]);
-        console.log(trendingCoins);
+        const { data: {coins} } = await axios.get(`${process.env.REACT_APP_TRENDING_COINS}`);
+        setTrendingCoins(coins);
+        console.log(coins);
       } catch (error) {
         console.log(error);
       }
     };
-    const fetch = async () => {
+    const fetchCoins = async () => {
       setIsLoading(true);
       const { data } = await axios.get(
         `${process.env.REACT_APP_COINDETAILS_URL_ONE}${paginatedValue}${process.env.REACT_APP_COINDETAILS_URL_TWO}`
       );
       setCoins(data);
-      console.log(coins);
       setIsLoading(false);
     };
     getTrendingCoins();
-    fetch();
+    fetchCoins();
   }, [paginatedValue]);
 
-  const paginate = (val) => {
-    setPaginatedValue(val);
-  };
+  const paginate = (val) => setPaginatedValue(val);
 
-  useEffect(() => {}, []);
   return (
     <div>
       <Container className="coins_container">
@@ -169,14 +167,14 @@ const CoinDetails = () => {
           <h1 style={{ textAlign: "center" }}>Trending Coins</h1>
           <div className="trending-coins">
             {trendingCoins &&
-              trendingCoins.map((coin) => (
-                <div className="trending-coin" key={coin.id}>
-                  <img src={coin.image} alt={coin.id} />
+              trendingCoins.map(({item: {id, thumb, symbol}}) => { // destructure more
+                return <div className="trending-coin" key={id}>
+                  <img src={thumb} alt={id} />
                   <p>
-                    {coin.id} ({coin.symbol})
+                    {id} ({symbol})
                   </p>
                 </div>
-              ))}
+              })}
           </div>
         </div>
         <Table style={{ marginTop: "4rem" }}>
