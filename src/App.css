@@ -25,6 +25,10 @@ button.cta {
   border-radius: 5px;
 }
 
+.cta-watch-list {
+  width: 5rem !important;
+}
+
 .cta-home {
   position: absolute;
   left: 1rem;
