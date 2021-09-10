@@ -10,12 +10,12 @@
 
 html,
 body {
-  background-color: #0a043c !important;
+  background-color: #120f30 !important;
 }
 
 .page {
   color: #fff !important;
-  background-color: #047bfe !important;
+  background-color: #033469 !important;
 }
 
 button.cta {
@@ -212,13 +212,21 @@ th {
   justify-content: center;
 }
 
-.coin-link div {
+.coin-link{
   display: flex;
-  width: 100%;
-  height: 50px;
+  width: 5rem;
+  height: 40px;
+  background-color: #047dfe7a;
+  border-radius: 5px;
   align-items: center;
   justify-content: center;
+  margin: 5px auto;
 }
+
+.coin-link:hover{
+  text-decoration: none;
+}
+
 
 .page:hover {
   background-color: #047dfea5 !important;

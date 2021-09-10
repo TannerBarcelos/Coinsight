@@ -117,7 +117,7 @@ const CoinDetails = () => {
         </div>
 
         {isLoading && <LoadingSpinner />}
-        <h1>Coin Details</h1>
+        <h1>All Coins</h1>
         <div
           style={{
             width: '100%',
@@ -198,12 +198,10 @@ const CoinDetails = () => {
                         }
                       />
                     </td>
-                    <td className="coin-link">
-                      <div>
-                        <Link to={`/coin/${coin.id}`}>
-                          <Button color="primary">See more</Button>
+                    <td >
+                        <Link to={`/coin/${coin.id}`} className="coin-link">
+                          See more
                         </Link>
-                      </div>
                     </td>
                   </tr>
                 );
