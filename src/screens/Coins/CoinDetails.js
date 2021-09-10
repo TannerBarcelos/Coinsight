@@ -165,20 +165,6 @@ const CoinDetails = () => {
           nums={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
           className="pagination-bar"
         />
-        <div className="trending-container">
-          <h1 style={{ textAlign: "center" }}>Trending Coins</h1>
-          <div className="trending-coins">
-            {trendingCoins &&
-              trendingCoins.map((coin) => (
-                <div className="trending-coin" key={coin.id}>
-                  <img src={coin.image} alt={coin.id} />
-                  <p>
-                    {coin.id} ({coin.symbol})
-                  </p>
-                </div>
-              ))}
-          </div>
-        </div>
         <Table style={{ marginTop: "4rem" }}>
           <thead>
             <tr>
