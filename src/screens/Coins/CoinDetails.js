@@ -176,6 +176,7 @@ const CoinDetails = () => {
           nums={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
           className="pagination-bar"
         />
+
         <div className="trending-container">
           <h1 style={{ textAlign: "center" }}>Trending Coins 🔥</h1>
           <div className="trending-coins">
