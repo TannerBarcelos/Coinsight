@@ -1,4 +1,4 @@
-const convertISOString = (timeSince) => {
+export const convertISOString = (timeSince) => {
   const realDateString = new Date(timeSince);
   const stringDate = realDateString.toDateString();
   return stringDate;

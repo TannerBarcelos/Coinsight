@@ -9,7 +9,10 @@ import PaginationBar from '../../PaginationBar';
 import LoadingSpinner from '../../LoadingSpinner';
 
 // Helper methods
-import { createDatePriceCollection } from '../../helpers/dateConversion';
+import {
+  convertISOString,
+  createDatePriceCollection,
+} from '../../helpers/dateConversion';
 import {
   slicePathName,
   sliceAndUpperCasePathName,
@@ -26,6 +29,7 @@ const CoinDetail = ({ match, location }) => {
   const [coinPrice, setCoinPrice] = useState(null);
   const [coin, setCoin] = useState('');
   const [coinData, setCoinData] = useState({});
+  const [coinNews, setCoinNews] = useState([]);
 
   // Grab the coin name from the url path
   const coinName = slicePathName(location.pathname);
@@ -34,7 +38,9 @@ const CoinDetail = ({ match, location }) => {
   useEffect(() => {
     fetchCoinPrice();
     fetchCoinData();
+    fetchCoinNews();
   }, [paginatedDayValue]);
+  console.log(coinNews);
 
   const fetchCoinPrice = async () => {
     setIsLoading(true);
@@ -59,6 +65,23 @@ const CoinDetail = ({ match, location }) => {
     } catch (e) {
       history.push('/');
     }
+  };
+
+  const fetchCoinNews = async () => {
+    const {
+      data: { value },
+    } = await axios.get(
+      `https://bing-news-search1.p.rapidapi.com/news/search?q=${coinName}&safeSearch=Off&textFormat=Raw&freshness=Day`,
+      {
+        method: 'GET',
+        headers: {
+          'x-bingapis-sdk': 'true',
+          'x-rapidapi-host': 'bing-news-search1.p.rapidapi.com',
+          'x-rapidapi-key': process.env.REACT_APP_RAPID_API_KEY,
+        },
+      },
+    );
+    setCoinNews(value);
   };
 
   // Only if the coinData exists should we run our conversions
@@ -100,6 +123,28 @@ const CoinDetail = ({ match, location }) => {
           data={dataObj(formatCoinData)}
           options={optionsObj(coin, paginatedDayValue)}
         />
+      </div>
+      <h1 style={{ marginTop: '4rem' }}>Latest {coin} News</h1>
+      <div className="news-card-container">
+        {coinNews &&
+          coinNews.map((newsArticle) => {
+            const articleName = newsArticle.name;
+            const articlePubDate = newsArticle.datePublished;
+            const articleDesc = newsArticle.description;
+            const articleLink = newsArticle.url;
+            const articleImg = newsArticle.image.thumbnail.contentUrl;
+            return (
+              <div className="news-card">
+                <img src={articleImg} />
+                <h4>{articleName}</h4>
+                <span>{convertISOString(articlePubDate)}</span>
+                <p>{articleDesc}</p>
+                <a href={articleLink} target="_blank">
+                  Read More
+                </a>
+              </div>
+            );
+          })}
       </div>
     </Container>
   );
