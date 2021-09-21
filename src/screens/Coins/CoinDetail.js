@@ -135,7 +135,7 @@ const CoinDetail = ({ match, location }) => {
             const articleImg = newsArticle.image.thumbnail.contentUrl;
             return (
               <div className="news-card">
-                <img src={articleImg} />
+                <img src={articleImg} alt="article-image" />
                 <h4>{articleName}</h4>
                 <span>{convertISOString(articlePubDate)}</span>
                 <a href={articleLink} target="_blank">
