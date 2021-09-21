@@ -40,7 +40,6 @@ const CoinDetail = ({ match, location }) => {
     fetchCoinData();
     fetchCoinNews();
   }, [paginatedDayValue]);
-  console.log(coinNews);
 
   const fetchCoinPrice = async () => {
     setIsLoading(true);
@@ -100,7 +99,9 @@ const CoinDetail = ({ match, location }) => {
             </div>
           </div>
           <Link to="/coindetails">
-            <Button className="cta">Go Back</Button>
+            <Button className="cta">
+              <i class="fas fa-arrow-left"></i>
+            </Button>
           </Link>
           <p
             style={{
@@ -130,7 +131,6 @@ const CoinDetail = ({ match, location }) => {
           coinNews.map((newsArticle) => {
             const articleName = newsArticle.name;
             const articlePubDate = newsArticle.datePublished;
-            const articleDesc = newsArticle.description;
             const articleLink = newsArticle.url;
             const articleImg = newsArticle.image.thumbnail.contentUrl;
             return (
@@ -138,7 +138,6 @@ const CoinDetail = ({ match, location }) => {
                 <img src={articleImg} />
                 <h4>{articleName}</h4>
                 <span>{convertISOString(articlePubDate)}</span>
-                <p>{articleDesc}</p>
                 <a href={articleLink} target="_blank">
                   Read More
                 </a>
