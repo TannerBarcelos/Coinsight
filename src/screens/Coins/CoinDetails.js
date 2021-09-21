@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useHistory } from "react-router-dom";
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import axios from 'axios';
 
-import { BsFillBookmarkFill } from "react-icons/bs";
+import { BsFillBookmarkFill } from 'react-icons/bs';
 
 import {
   removeFromWatchlist,
   addToWatchlist,
   clearWatchlist,
-} from "../../helpers/watchlistManipulators";
+} from '../../helpers/watchlistManipulators';
 
-import { formatPricing } from "../../helpers/formatPricing";
+import { formatPricing } from '../../helpers/formatPricing';
 
 import {
   Button,
@@ -20,19 +20,19 @@ import {
   InputGroup,
   InputGroupAddon,
   Input,
-} from "reactstrap";
+} from 'reactstrap';
 
 // Component imports
-import PaginationBar from "../../PaginationBar";
-import LoadingSpinner from "../../LoadingSpinner";
+import PaginationBar from '../../PaginationBar';
+import LoadingSpinner from '../../LoadingSpinner';
 
 const CoinDetails = () => {
   const watchListFromLocalStorage = JSON.parse(
-    localStorage.getItem("watchList")
+    localStorage.getItem('watchList'),
   );
   const [coins, setCoins] = useState([]);
   const [watchList, setWatchList] = useState(
-    watchListFromLocalStorage ? watchListFromLocalStorage : []
+    watchListFromLocalStorage ? watchListFromLocalStorage : [],
   );
   const [paginatedValue, setPaginatedValue] = useState(1); // allow pagination
   const [isLoading, setIsLoading] = useState(false);
@@ -41,12 +41,12 @@ const CoinDetails = () => {
   const history = useHistory();
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setCryptoName({ ...cryptoName, [name]: value.replace(" ", "-") });
+    setCryptoName({ ...cryptoName, [name]: value.replace(' ', '-') });
   };
 
   const validateSearch = (term) => {
     if (!term || term.length === 0) {
-      alert("Please enter a valid coin");
+      alert('Please enter a valid coin');
       return false;
     } else {
       history.push(`/coin/${cryptoName.crypto}`);
@@ -66,7 +66,7 @@ const CoinDetails = () => {
     const fetch = async () => {
       setIsLoading(true);
       const { data } = await axios.get(
-        `${process.env.REACT_APP_COINDETAILS_URL_ONE}${paginatedValue}${process.env.REACT_APP_COINDETAILS_URL_TWO}`
+        `${process.env.REACT_APP_COINDETAILS_URL_ONE}${paginatedValue}${process.env.REACT_APP_COINDETAILS_URL_TWO}`,
       );
       setCoins(data);
       console.log(coins);
@@ -76,11 +76,8 @@ const CoinDetails = () => {
     fetch();
   }, [paginatedValue]);
 
-  const paginate = (val) => {
-    setPaginatedValue(val);
-  };
+  const paginate = (val) => setPaginatedValue(val);
 
-  useEffect(() => {}, []);
   return (
     <div>
       <Container className="coins_container">
@@ -108,7 +105,7 @@ const CoinDetails = () => {
                 <p>Current Market Cap Ranking: {coin.market_cap_rank}</p>
                 <p>Current Price (usd): ${coin.current_price}</p>
                 <p>
-                  Price Change % (Last 24 hours):{" "}
+                  Price Change % (Last 24 hours):{' '}
                   {coin.price_change_percentage_24h}
                 </p>
                 <i
@@ -131,14 +128,16 @@ const CoinDetails = () => {
         <h1>All Coins</h1>
         <div
           style={{
-            width: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
           }}
         >
           <Link to="/">
-            <Button className="cta cta-home">Go Home</Button>
+            <Button className="cta cta-home">
+              <i class="fas fa-home"></i>
+            </Button>
           </Link>
           <div>
             <InputGroup>
@@ -151,7 +150,7 @@ const CoinDetails = () => {
                 />
                 <Button
                   className="cta-search"
-                  style={{ marginLeft: "1rem" }}
+                  style={{ marginLeft: '1rem' }}
                   onClick={() => validateSearch(cryptoName.crypto)}
                 >
                   Perform Search
@@ -165,7 +164,7 @@ const CoinDetails = () => {
           nums={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
           className="pagination-bar"
         />
-        <Table style={{ marginTop: "4rem" }}>
+        <Table style={{ marginTop: '4rem' }}>
           <thead>
             <tr>
               <th>Rank (#)</th>
@@ -209,10 +208,10 @@ const CoinDetails = () => {
                         }
                       />
                     </td>
-                    <td >
-                        <Link to={`/coin/${coin.id}`} className="coin-link">
-                          See more
-                        </Link>
+                    <td>
+                      <Link to={`/coin/${coin.id}`} className="coin-link">
+                        See more
+                      </Link>
                     </td>
                   </tr>
                 );

@@ -8,7 +8,6 @@ import CoinDetails from './screens/Coins/CoinDetails';
 import CoinDetail from './screens/Coins/CoinDetail';
 
 const App = () => {
-
   return (
     <Router>
       <Switch>
