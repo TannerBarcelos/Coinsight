@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../contexts/authContext';
 import axios from 'axios';
 
 import { BsFillBookmarkFill } from 'react-icons/bs';
@@ -37,6 +38,8 @@ const CoinDetails = () => {
   const [paginatedValue, setPaginatedValue] = useState(1); // allow pagination
   const [isLoading, setIsLoading] = useState(false);
   const [cryptoName, setCryptoName] = useState({});
+
+  const { logOut } = useAuth();
 
   const history = useHistory();
   const handleInputChange = (event) => {
@@ -77,6 +80,15 @@ const CoinDetails = () => {
   }, [paginatedValue]);
 
   const paginate = (val) => setPaginatedValue(val);
+
+  const logout = async () => {
+    try {
+      await logOut();
+      history.push('/');
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
@@ -126,6 +138,7 @@ const CoinDetails = () => {
 
         {isLoading && <LoadingSpinner />}
         <h1>All Coins</h1>
+        <i className="fas fa-sign-out-alt logout-btn" onClick={logout}></i>
         <div
           style={{
             width: '100%',
@@ -134,11 +147,7 @@ const CoinDetails = () => {
             justifyContent: 'space-between',
           }}
         >
-          <Link to="/">
-            <Button className="cta cta-home">
-              <i class="fas fa-home"></i>
-            </Button>
-          </Link>
+          <div></div>
           <div>
             <InputGroup>
               <InputGroupAddon addonType="append">

@@ -398,3 +398,46 @@ th {
   text-decoration: none;
   background-color: #0222445e;
 }
+
+.logout-btn {
+  position: absolute;
+  display: flex;
+  top: 1rem;
+  right: 1rem;
+  background-color: #047dfe5b;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.3rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.logout-btn:hover {
+  background-color: #047dfe8a;
+  cursor: pointer;
+}
+
+.popup-container-success {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 1rem auto;
+  background-color: rgba(125, 224, 155, 0.63);
+  color: #000;
+}
+
+.popup-container-danger {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 1rem auto;
+  background-color: rgba(158, 40, 40, 0.63);
+  color: #eee;
+}
