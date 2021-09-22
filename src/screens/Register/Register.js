@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
-
 import { useAuth } from '../../contexts/authContext';
+import { Alert } from 'reactstrap';
 
 const Login = () => {
   const history = useHistory();
@@ -10,18 +10,37 @@ const Login = () => {
   const [emailInp, setEmailInp] = useState('');
   const [pwdInp, setPwdInp] = useState('');
   const [showingPopup, setShowingPopup] = useState(false);
+  const [popupState, setPopupState] = useState({
+    success: false,
+    color: '',
+  });
 
   // signUp and signIn actions are available to us since they are functions - the variables will take some time to populate
   const { currentUser, isAuth, signUp } = useAuth();
 
   // Process Registration
   const onSubmit = async (e) => {
-    await signUp(emailInp, pwdInp);
-    if (isAuth) {
+    try {
+      await signUp(emailInp, pwdInp);
+      if (isAuth) {
+        setPopupState({
+          success: true,
+          color: 'success',
+        });
+        setShowingPopup(true);
+        setTimeout(() => {
+          setShowingPopup(false);
+          history.push('/coins');
+        }, 3000);
+      }
+    } catch (error) {
+      setPopupState({
+        success: false,
+        color: 'danger',
+      });
       setShowingPopup(true);
       setTimeout(() => {
         setShowingPopup(false);
-        history.push('/coins');
       }, 3000);
     }
   };
