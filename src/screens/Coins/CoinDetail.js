@@ -98,7 +98,7 @@ const CoinDetail = ({ match, location }) => {
               {coinPrice && <span>Current price: ${coinPrice}</span>}
             </div>
           </div>
-          <Link to="/coindetails">
+          <Link to="/coins">
             <Button className="cta">
               <i class="fas fa-arrow-left"></i>
             </Button>

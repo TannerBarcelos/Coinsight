@@ -3,6 +3,7 @@ import { auth } from '../firebase';
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
 } from 'firebase/auth';
 const AuthContext = createContext();
 
@@ -18,13 +19,14 @@ export const AuthProvider = ({ children }) => {
   const signIn = (email, password) =>
     signInWithEmailAndPassword(auth, email, password);
 
+  const logOut = () => signOut(auth);
+
   // listen for auth changes from the server (Firebase)
   useEffect(() => {
-    const unsub = auth.onAuthStateChanged((user) => {
+    return auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
       setIsAuth(true);
     });
-    return unsub;
   }, []);
 
   const value = {
@@ -32,6 +34,7 @@ export const AuthProvider = ({ children }) => {
     isAuth,
     signUp,
     signIn,
+    logOut,
   };
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
