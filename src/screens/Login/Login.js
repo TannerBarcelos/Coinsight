@@ -46,7 +46,7 @@ const Login = () => {
   return (
     <Container
       style={{
-        height: '25rem',
+        height: '30rem',
         width: '40rem',
         margin: '10rem auto',
         background: '#165ba51a',

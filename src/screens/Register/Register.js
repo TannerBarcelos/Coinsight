@@ -46,7 +46,7 @@ const Login = () => {
   return (
     <Container
       style={{
-        height: '23rem',
+        height: '26rem',
         width: '40rem',
         margin: '10rem auto',
         background: '#165ba51a',
@@ -71,6 +71,7 @@ const Login = () => {
             name="email"
             id="emailInput"
             onChange={(e) => setEmailInp(e.target.value)}
+            className="coin-inp"
           />
           <Label for="passwordInput">Password</Label>
           <Input
@@ -78,6 +79,7 @@ const Login = () => {
             name="password"
             id="passwordInput"
             onChange={(e) => setPwdInp(e.target.value)}
+            className="coin-inp"
           />
         </FormGroup>
         <Button onClick={onSubmit}>Register</Button>
