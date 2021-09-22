@@ -25,13 +25,11 @@ export const AuthProvider = ({ children }) => {
   useEffect(() => {
     return auth.onAuthStateChanged((user) => {
       setCurrentUser(user);
-      setIsAuth(true);
     });
   }, []);
 
   const value = {
     currentUser,
-    isAuth,
     signUp,
     signIn,
     logOut,

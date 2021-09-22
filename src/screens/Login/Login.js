@@ -15,23 +15,22 @@ const Login = () => {
     color: '',
   });
 
-  const { currentUser, isAuth, signIn } = useAuth();
+  const { signIn } = useAuth();
 
   // Process Login
   const onSubmit = async (e) => {
     try {
       await signIn(emailInp, pwdInp);
-      if (isAuth) {
-        setPopupState({
-          success: true,
-          color: 'success',
-        });
-        setShowingPopup(true);
-        setTimeout(() => {
-          setShowingPopup(false);
-          history.push('/coins');
-        }, 3000);
-      }
+
+      setPopupState({
+        success: true,
+        color: 'success',
+      });
+      setShowingPopup(true);
+      setTimeout(() => {
+        setShowingPopup(false);
+        history.push('/coins');
+      }, 3000);
     } catch (error) {
       setPopupState({
         success: false,
@@ -72,6 +71,7 @@ const Login = () => {
             name="email"
             id="emailInput"
             onChange={(e) => setEmailInp(e.target.value)}
+            className="coin-inp"
           />
           <Label for="passwordInput">Password</Label>
           <Input
@@ -79,6 +79,7 @@ const Login = () => {
             name="password"
             id="passwordInput"
             onChange={(e) => setPwdInp(e.target.value)}
+            className="coin-inp"
           />
         </FormGroup>
         <Button onClick={onSubmit}>Login</Button>

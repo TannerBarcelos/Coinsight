@@ -8,6 +8,7 @@ import Login from './screens/Login/Login';
 import Register from './screens/Register/Register';
 import CoinDetails from './screens/Coins/CoinDetails';
 import CoinDetail from './screens/Coins/CoinDetail';
+import AuthRoute from './components/authRoute';
 import { AuthProvider } from './contexts/authContext';
 
 const App = () => {
@@ -16,10 +17,10 @@ const App = () => {
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route path="/coins" component={CoinDetails} />
-          <Route path="/coin/:id" component={CoinDetail} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/register" component={Register} />
+          <AuthRoute exact path="/coins" component={CoinDetails} />
+          <AuthRoute exact path="/coin/:id" component={CoinDetail} />
         </Switch>
       </Router>
     </AuthProvider>

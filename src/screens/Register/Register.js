@@ -16,23 +16,21 @@ const Login = () => {
   });
 
   // signUp and signIn actions are available to us since they are functions - the variables will take some time to populate
-  const { currentUser, isAuth, signUp } = useAuth();
+  const { signUp } = useAuth();
 
   // Process Registration
   const onSubmit = async (e) => {
     try {
       await signUp(emailInp, pwdInp);
-      if (isAuth) {
-        setPopupState({
-          success: true,
-          color: 'success',
-        });
-        setShowingPopup(true);
-        setTimeout(() => {
-          setShowingPopup(false);
-          history.push('/coins');
-        }, 3000);
-      }
+      setPopupState({
+        success: true,
+        color: 'success',
+      });
+      setShowingPopup(true);
+      setTimeout(() => {
+        setShowingPopup(false);
+        history.push('/coins');
+      }, 3000);
     } catch (error) {
       setPopupState({
         success: false,
