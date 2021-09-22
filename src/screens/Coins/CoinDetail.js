@@ -125,17 +125,23 @@ const CoinDetail = ({ match, location }) => {
           options={optionsObj(coin, paginatedDayValue)}
         />
       </div>
-      <h1 style={{ marginTop: '4rem' }}>Latest {coin} News</h1>
+      {coinNews.length > 0 && (
+        <h1 style={{ marginTop: '4rem' }}>Latest {coin} News</h1>
+      )}
       <div className="news-card-container">
         {coinNews &&
           coinNews.map((newsArticle) => {
             const articleName = newsArticle.name;
             const articlePubDate = newsArticle.datePublished;
             const articleLink = newsArticle.url;
-            const articleImg = newsArticle.image.thumbnail.contentUrl;
+            const articleImg =
+              newsArticle &&
+              newsArticle.image &&
+              newsArticle.image.thumbnail &&
+              newsArticle.image.thumbnail.contentUrl;
             return (
               <div className="news-card">
-                <img src={articleImg} alt="article-image" />
+                {articleImg && <img src={articleImg} alt="article-image" />}
                 <h4>{articleName}</h4>
                 <span>{convertISOString(articlePubDate)}</span>
                 <a href={articleLink} target="_blank">
