@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
 
@@ -8,17 +8,23 @@ const Login = () => {
   const [emailInp, setEmailInp] = useState('');
   const [pwdInp, setPwdInp] = useState('');
 
-  const { signUp } = useAuth();
+  // signUp and signIn actions are available to us since they are functions - the variables will take some time to populate
+  const { currentUser, isAuth, signUp, signIn, popupAuthMessage } = useAuth();
+
+  useEffect(() => {
+    console.log(currentUser, isAuth, popupAuthMessage);
+  }, [currentUser, isAuth, popupAuthMessage]);
 
   // Process Login
   const onSubmit = (e) => {
     signUp(emailInp, pwdInp);
+    console.log(currentUser, isAuth, popupAuthMessage);
   };
 
   return (
     <Container
       style={{
-        height: '30rem',
+        height: '23rem',
         width: '40rem',
         margin: '10rem auto',
         background: '#165ba51a',
@@ -45,7 +51,7 @@ const Login = () => {
             onChange={(e) => setPwdInp(e.target.value)}
           />
         </FormGroup>
-        <Button onClick={onSubmit}>Login</Button>
+        <Button onClick={onSubmit}>Register</Button>
       </Form>
       <p style={{ display: 'inline-block', marginTop: '1rem' }}>
         Already a member? Sign in <Link to="/login">here</Link>
