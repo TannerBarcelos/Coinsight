@@ -4,6 +4,8 @@ import './App.css';
 
 // Component imports
 import Home from './screens/Home/Home';
+import Login from './screens/Login/Login';
+import Register from './screens/Register/Register';
 import CoinDetails from './screens/Coins/CoinDetails';
 import CoinDetail from './screens/Coins/CoinDetail';
 
@@ -12,7 +14,9 @@ const App = () => {
     <Router>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/coindetails" component={CoinDetails} />
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route path="/login" component={CoinDetails} />
         <Route path="/coin/:id" component={CoinDetail} />
       </Switch>
     </Router>

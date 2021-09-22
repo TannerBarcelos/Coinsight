@@ -6,8 +6,8 @@ const Home = () => {
     <div className="home_container">
       <h1>Welcome to CoinSight</h1>
       <p>Get Crypto Curreny Information With Ease</p>
-      <Link to="/coindetails" className="start-btn">
-        Get Your Coinsights
+      <Link to="/login" className="start-btn">
+        Login
       </Link>
     </div>
   );
