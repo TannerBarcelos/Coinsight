@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
 import { useAuth } from '../../contexts/authContext';
-import { Alert } from 'reactstrap';
+import Popup from '../../components/Popup';
 
 const Login = () => {
   const history = useHistory();
@@ -46,7 +46,7 @@ const Login = () => {
   return (
     <Container
       style={{
-        height: '26rem',
+        height: '28rem',
         width: '40rem',
         margin: '10rem auto',
         background: '#165ba51a',
@@ -57,11 +57,14 @@ const Login = () => {
     >
       <h1>Sign Up</h1>
       {showingPopup && (
-        <Alert color={popupState.color}>
-          {popupState.success
-            ? 'Successfully logged in!'
-            : 'There was a problem signing in'}
-        </Alert>
+        <Popup
+          color={popupState.color}
+          msg={
+            popupState.success
+              ? 'Successfully Registered!'
+              : 'There was a problem registering'
+          }
+        />
       )}
       <Form>
         <FormGroup>

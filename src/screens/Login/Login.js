@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
 import { useAuth } from '../../contexts/authContext';
-import { Alert } from 'reactstrap';
+
+import Popup from '../../components/Popup';
 
 const Login = () => {
   const history = useHistory();
@@ -57,11 +58,14 @@ const Login = () => {
     >
       <h1>Login</h1>
       {showingPopup && (
-        <Alert color={popupState.color}>
-          {popupState.success
-            ? 'Successfully logged in!'
-            : 'There was a problem signing in'}
-        </Alert>
+        <Popup
+          color={popupState.color}
+          msg={
+            popupState.success
+              ? 'Successfully logged in!'
+              : 'There was a problem signing in'
+          }
+        />
       )}
       <Form>
         <FormGroup>
