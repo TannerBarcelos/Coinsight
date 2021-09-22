@@ -18,7 +18,7 @@ const App = () => {
           <Route exact path="/" component={Home} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
-          <Route path="/login" component={CoinDetails} />
+          <Route path="/coins" component={CoinDetails} />
           <Route path="/coin/:id" component={CoinDetail} />
         </Switch>
       </Router>

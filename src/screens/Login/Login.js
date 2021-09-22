@@ -1,16 +1,26 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
 import { useAuth } from '../../contexts/authContext';
 const Login = () => {
+  const history = useHistory();
+
   const [emailInp, setEmailInp] = useState('');
   const [pwdInp, setPwdInp] = useState('');
+  const [showingPopup, setShowingPopup] = useState(false);
 
-  const { signIn } = useAuth();
+  const { currentUser, isAuth, signIn } = useAuth();
 
   // Process Login
-  const onSubmit = (e) => {
-    signIn(emailInp, pwdInp);
+  const onSubmit = async (e) => {
+    await signIn(emailInp, pwdInp);
+    if (isAuth) {
+      setShowingPopup(true);
+      setTimeout(() => {
+        setShowingPopup(false);
+        history.push('/coins');
+      }, 3000);
+    }
   };
 
   return (
@@ -53,7 +63,7 @@ const Login = () => {
         style={{ position: 'absolute', bottom: '1rem', left: '1rem' }}
       >
         <Button>
-          <i class="fas fa-home"></i>
+          <i className="fas fa-home"></i>
         </Button>
       </Link>
     </Container>

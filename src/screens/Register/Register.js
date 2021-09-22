@@ -1,24 +1,29 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
 
 import { useAuth } from '../../contexts/authContext';
 
 const Login = () => {
+  const history = useHistory();
+
   const [emailInp, setEmailInp] = useState('');
   const [pwdInp, setPwdInp] = useState('');
+  const [showingPopup, setShowingPopup] = useState(false);
 
   // signUp and signIn actions are available to us since they are functions - the variables will take some time to populate
-  const { currentUser, isAuth, signUp, signIn, popupAuthMessage } = useAuth();
+  const { currentUser, isAuth, signUp } = useAuth();
 
-  useEffect(() => {
-    console.log(currentUser, isAuth, popupAuthMessage);
-  }, [currentUser, isAuth, popupAuthMessage]);
-
-  // Process Login
-  const onSubmit = (e) => {
-    signUp(emailInp, pwdInp);
-    console.log(currentUser, isAuth, popupAuthMessage);
+  // Process Registration
+  const onSubmit = async (e) => {
+    await signUp(emailInp, pwdInp);
+    if (isAuth) {
+      setShowingPopup(true);
+      setTimeout(() => {
+        setShowingPopup(false);
+        history.push('/coins');
+      }, 3000);
+    }
   };
 
   return (
@@ -61,7 +66,7 @@ const Login = () => {
         style={{ position: 'absolute', bottom: '1rem', left: '1rem' }}
       >
         <Button>
-          <i class="fas fa-home"></i>
+          <i className="fas fa-home"></i>
         </Button>
       </Link>
     </Container>
