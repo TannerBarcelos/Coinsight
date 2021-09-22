@@ -8,18 +8,21 @@ import Login from './screens/Login/Login';
 import Register from './screens/Register/Register';
 import CoinDetails from './screens/Coins/CoinDetails';
 import CoinDetail from './screens/Coins/CoinDetail';
+import { AuthProvider } from './contexts/authContext';
 
 const App = () => {
   return (
-    <Router>
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-        <Route path="/login" component={CoinDetails} />
-        <Route path="/coin/:id" component={CoinDetail} />
-      </Switch>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route path="/login" component={CoinDetails} />
+          <Route path="/coin/:id" component={CoinDetail} />
+        </Switch>
+      </Router>
+    </AuthProvider>
   );
 };
 

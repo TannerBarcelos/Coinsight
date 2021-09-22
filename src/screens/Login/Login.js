@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
-
+import { useAuth } from '../../contexts/authContext';
 const Login = () => {
   const [emailInp, setEmailInp] = useState('');
   const [pwdInp, setPwdInp] = useState('');
 
+  const { signIn } = useAuth();
+
   // Process Login
   const onSubmit = (e) => {
-    console.log(emailInp, pwdInp);
+    signIn(emailInp, pwdInp);
   };
 
   return (

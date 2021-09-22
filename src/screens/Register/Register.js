@@ -2,14 +2,17 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
 
+import { useAuth } from '../../contexts/authContext';
+
 const Login = () => {
-  const [fullName, setFullName] = useState('');
   const [emailInp, setEmailInp] = useState('');
   const [pwdInp, setPwdInp] = useState('');
 
+  const { signUp } = useAuth();
+
   // Process Login
   const onSubmit = (e) => {
-    console.log(emailInp, pwdInp, fullName);
+    signUp(emailInp, pwdInp);
   };
 
   return (
@@ -27,13 +30,6 @@ const Login = () => {
       <h1>Sign Up</h1>
       <Form>
         <FormGroup>
-          <Label for="nameInput">Full Name</Label>
-          <Input
-            type="text"
-            name="name"
-            id="nameInput"
-            onChange={(e) => setFullName(e.target.value)}
-          />
           <Label for="emailInput">Email</Label>
           <Input
             type="email"
