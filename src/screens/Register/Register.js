@@ -58,6 +58,13 @@ const Login = () => {
       }}
     >
       <h1>Sign Up</h1>
+      {showingPopup && (
+        <Alert color={popupState.color}>
+          {popupState.success
+            ? 'Successfully logged in!'
+            : 'There was a problem signing in'}
+        </Alert>
+      )}
       <Form>
         <FormGroup>
           <Label for="emailInput">Email</Label>
