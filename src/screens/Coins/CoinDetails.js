@@ -126,6 +126,7 @@ const CoinDetails = () => {
 
         {isLoading && <LoadingSpinner />}
         <h1>All Coins</h1>
+        <i className="fas fa-sign-out-alt logout-btn"></i>
         <div
           style={{
             width: '100%',
@@ -134,11 +135,7 @@ const CoinDetails = () => {
             justifyContent: 'space-between',
           }}
         >
-          <Link to="/">
-            <Button className="cta cta-home">
-              <i class="fas fa-home"></i>
-            </Button>
-          </Link>
+          <div></div>
           <div>
             <InputGroup>
               <InputGroupAddon addonType="append">

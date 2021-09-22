@@ -398,3 +398,22 @@ th {
   text-decoration: none;
   background-color: #0222445e;
 }
+
+.logout-btn {
+  position: absolute;
+  display: flex;
+  top: 1rem;
+  right: 1rem;
+  background-color: #047dfe5b;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.3rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+}
+
+.logout-btn:hover {
+  background-color: #047dfe8a;
+  cursor: pointer;
+}
