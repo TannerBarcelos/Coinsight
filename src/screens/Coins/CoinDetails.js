@@ -92,13 +92,13 @@ const CoinDetails = () => {
 
   return (
     <div>
-      <Container className="coins_container">
-        <div className="watchlist">
-          <div className="watchlist-top-container">
+      <Container className='coins_container'>
+        <div className='watchlist'>
+          <div className='watchlist-top-container'>
             <h6>My Watchlist</h6>
             {watchList && watchList.length > 0 ? (
               <Button
-                className="cta cta-watch-list"
+                className='cta cta-watch-list'
                 onClick={() => clearWatchlist(setWatchList)}
               >
                 Clear
@@ -107,8 +107,8 @@ const CoinDetails = () => {
           </div>
           {watchList && watchList.length > 0 ? (
             watchList.map((coin) => (
-              <div className="watchlist-item" key={coin.id}>
-                <div className="watchlist-coin-data">
+              <div className='watchlist-item' key={coin.id}>
+                <div className='watchlist-coin-data'>
                   <img src={coin.image} alt={coin.id} />
                   <p>
                     {coin.id} ({coin.symbol})
@@ -121,24 +121,24 @@ const CoinDetails = () => {
                   {coin.price_change_percentage_24h}
                 </p>
                 <i
-                  class="fas fa-info-circle"
+                  class='fas fa-info-circle'
                   onClick={(e) => history.push(`/coin/${coin.id}`)}
-                  className="fas fa-info-circle more-info"
+                  className='fas fa-info-circle more-info'
                 ></i>
                 <i
                   onClick={(e) => removeFromWatchlist(e, coin.id, setWatchList)}
-                  className="far fa-times-circle remove-coin"
+                  className='far fa-times-circle remove-coin'
                 ></i>
               </div>
             ))
           ) : (
-            <p className="addTW">Add to your watchlist</p>
+            <p className='addTW'>Add to your watchlist</p>
           )}
         </div>
 
         {isLoading && <LoadingSpinner />}
         <h1>All Coins</h1>
-        <i className="fas fa-sign-out-alt logout-btn" onClick={logout}></i>
+        <i className='fas fa-sign-out-alt logout-btn' onClick={logout}></i>
         <div
           style={{
             width: '100%',
@@ -150,15 +150,15 @@ const CoinDetails = () => {
           <div></div>
           <div>
             <InputGroup>
-              <InputGroupAddon addonType="append">
+              <InputGroupAddon addonType='append'>
                 <Input
                   onChange={handleInputChange}
-                  name="crypto"
-                  placeholder="Enter Any Crypto"
-                  className="coin-inp"
+                  name='crypto'
+                  placeholder='Enter Any Crypto'
+                  className='coin-inp'
                 />
                 <Button
-                  className="cta-search"
+                  className='cta-search'
                   style={{ marginLeft: '1rem' }}
                   onClick={() => validateSearch(cryptoName.crypto)}
                 >
@@ -171,7 +171,7 @@ const CoinDetails = () => {
         <PaginationBar
           setPagination={paginate}
           nums={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]}
-          className="pagination-bar"
+          className='pagination-bar'
         />
         <Table style={{ marginTop: '4rem' }}>
           <thead>
@@ -188,37 +188,36 @@ const CoinDetails = () => {
           <tbody>
             {coins &&
               coins.map((coin) => {
-                // console.log(coin) <-- uncomment to see other useful data for later features
                 return (
                   <tr key={coin.id}>
-                    <td className="coin-market">
+                    <td className='coin-market'>
                       <span>{coin.market_cap_rank}</span>
                     </td>
-                    <td className="coin-symbol">
+                    <td className='coin-symbol'>
                       <span>{coin.symbol}</span>
                     </td>
-                    <td className="coin-dat">
+                    <td className='coin-dat'>
                       <div>
                         <img src={coin.image} alt={coin.id} />
                         {coin.id}
                       </div>
                     </td>
-                    <td className="coin-price">
+                    <td className='coin-price'>
                       <span>$ {coin.current_price.toFixed(2)}</span>
                     </td>
-                    <td className="coin-market">
+                    <td className='coin-market'>
                       <span>{formatPricing(coin.market_cap)}</span>
                     </td>
                     <td>
                       <BsFillBookmarkFill
-                        className="cta-watch"
+                        className='cta-watch'
                         onClick={() =>
                           addToWatchlist(coin, setWatchList, watchList)
                         }
                       />
                     </td>
                     <td>
-                      <Link to={`/coin/${coin.id}`} className="coin-link">
+                      <Link to={`/coin/${coin.id}`} className='coin-link'>
                         See more
                       </Link>
                     </td>

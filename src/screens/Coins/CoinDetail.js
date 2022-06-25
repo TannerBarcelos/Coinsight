@@ -88,19 +88,19 @@ const CoinDetail = ({ match, location }) => {
     coinData && coinData.prices ? createDatePriceCollection(coinData) : [];
 
   return (
-    <Container className="coin_container">
+    <Container className='coin_container'>
       {isLoading && <LoadingSpinner />}
       {coin && (
         <div>
-          <div className="top-info">
+          <div className='top-info'>
             <h1>{coin}</h1>
-            <div className="insight-numbers">
+            <div className='insight-numbers'>
               {coinPrice && <span>Current price: ${coinPrice}</span>}
             </div>
           </div>
-          <Link to="/coins">
-            <Button className="cta">
-              <i class="fas fa-arrow-left"></i>
+          <Link to='/coins'>
+            <Button className='cta'>
+              <i class='fas fa-arrow-left'></i>
             </Button>
           </Link>
           <p
@@ -114,7 +114,7 @@ const CoinDetail = ({ match, location }) => {
           <PaginationBar
             setPagination={setPaginatedDayValue}
             nums={[7, 14, 30, 90, 365]}
-            className="pagination-bar-coin-details"
+            className='pagination-bar-coin-details'
           />
         </div>
       )}
@@ -128,7 +128,7 @@ const CoinDetail = ({ match, location }) => {
       {coinNews.length > 0 && (
         <h1 style={{ marginTop: '4rem' }}>Latest {coin} News</h1>
       )}
-      <div className="news-card-container">
+      <div className='news-card-container'>
         {coinNews &&
           coinNews.map((newsArticle) => {
             const articleName = newsArticle.name;
@@ -139,12 +139,13 @@ const CoinDetail = ({ match, location }) => {
               newsArticle.image &&
               newsArticle.image.thumbnail &&
               newsArticle.image.thumbnail.contentUrl;
+            console.log(articleImg);
             return (
-              <div className="news-card">
-                {articleImg && <img src={articleImg} alt="article-image" />}
-                <h4>{articleName}</h4>
+              <div className='news-card'>
+                {articleImg && <img src={articleImg} alt='article-image' />}
+                <p>{articleName}</p>
                 <span>{convertISOString(articlePubDate)}</span>
-                <a href={articleLink} target="_blank">
+                <a href={articleLink} target='_blank'>
                   Read More
                 </a>
               </div>
