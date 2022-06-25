@@ -3,22 +3,19 @@ import { Link, useHistory } from 'react-router-dom';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
 import { Button, Container } from 'reactstrap';
+import PaginationBar from '../../components/PaginationBar';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
-// Component imports
-import PaginationBar from '../../PaginationBar';
-import LoadingSpinner from '../../LoadingSpinner';
-
-// Helper methods
 import {
   convertISOString,
   createDatePriceCollection,
-} from '../../helpers/dateConversion';
+} from '../../utils/dateConversion';
+
 import {
   slicePathName,
   sliceAndUpperCasePathName,
-} from '../../helpers/slicePathName';
+} from '../../utils/slicePathName';
 
-// Chart Configs
 import { dataObj, optionsObj } from '../../chartConfig/chartConfig';
 
 const CoinDetail = ({ match, location }) => {
@@ -31,10 +28,8 @@ const CoinDetail = ({ match, location }) => {
   const [coinData, setCoinData] = useState({});
   const [coinNews, setCoinNews] = useState([]);
 
-  // Grab the coin name from the url path
   const coinName = slicePathName(location.pathname);
 
-  // Get the prcies of the coin based off pagination selection (initial query is 7 days)
   useEffect(() => {
     fetchCoinPrice();
     fetchCoinData();
@@ -83,7 +78,6 @@ const CoinDetail = ({ match, location }) => {
     setCoinNews(value);
   };
 
-  // Only if the coinData exists should we run our conversions
   const formatCoinData = () =>
     coinData && coinData.prices ? createDatePriceCollection(coinData) : [];
 

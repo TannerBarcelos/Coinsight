@@ -2,7 +2,6 @@
 export const removeFromWatchlist = (e, id, setWatchList) => {
   const currentWatchlist = JSON.parse(localStorage.getItem('watchList'));
   const newWatchlist = currentWatchlist.filter((coin) => coin.id !== id);
-  // Set the state to the new watchlist
   setWatchList((oldState) => oldState.filter((coin) => coin.id !== id));
   localStorage.setItem('watchList', JSON.stringify(newWatchlist));
 };
@@ -16,6 +15,7 @@ export const addToWatchlist = (coin, setWatchList, watchList) => {
     id,
     symbol,
   } = coin;
+
   const newWatchlistCoin = {
     current_price,
     image,
@@ -25,13 +25,11 @@ export const addToWatchlist = (coin, setWatchList, watchList) => {
     symbol,
   };
 
-  // DO NOT ALLOW DUPLICATES
   if (watchList.findIndex((item) => item.id === newWatchlistCoin.id) > -1) {
     alert('You cannot add to your watchlist twice');
     return;
   }
 
-  // Set state for watchlist + add new item (first, or a new one to the already existing collection)
   let currentWatchList = JSON.parse(localStorage.getItem('watchList'));
   if (!currentWatchList) {
     setWatchList([newWatchlistCoin]);
@@ -45,7 +43,6 @@ export const addToWatchlist = (coin, setWatchList, watchList) => {
   }
 };
 
-// Very simple: clear watchList state for react UI AND clear localstorage of watchList
 export const clearWatchlist = (setWatchList) => {
   setWatchList([]);
   localStorage.setItem('watchList', JSON.stringify([]));

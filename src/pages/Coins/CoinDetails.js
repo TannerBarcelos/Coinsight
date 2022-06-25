@@ -10,9 +10,9 @@ import {
   removeFromWatchlist,
   addToWatchlist,
   clearWatchlist,
-} from '../../helpers/watchlistManipulators';
+} from '../../utils/watchlistManipulators';
 
-import { formatPricing } from '../../helpers/formatPricing';
+import { formatPricing } from '../../utils/formatPricing';
 
 import {
   Button,
@@ -24,8 +24,8 @@ import {
 } from 'reactstrap';
 
 // Component imports
-import PaginationBar from '../../PaginationBar';
-import LoadingSpinner from '../../LoadingSpinner';
+import PaginationBar from '../../components/PaginationBar';
+import LoadingSpinner from '../../components/LoadingSpinner';
 
 const CoinDetails = () => {
   const watchListFromLocalStorage = JSON.parse(

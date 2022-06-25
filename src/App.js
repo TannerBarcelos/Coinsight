@@ -3,11 +3,11 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 
 // Component imports
-import Home from './screens/Home/Home';
-import Login from './screens/Login/Login';
-import Register from './screens/Register/Register';
-import CoinDetails from './screens/Coins/CoinDetails';
-import CoinDetail from './screens/Coins/CoinDetail';
+import Home from './pages/Home/Home';
+import Login from './pages/Login/Login';
+import Register from './pages/Register/Register';
+import CoinDetails from './pages/Coins/CoinDetails';
+import CoinDetail from './pages/Coins/CoinDetail';
 import AuthRoute from './components/authRoute';
 import { AuthProvider } from './contexts/authContext';
 
@@ -16,11 +16,11 @@ const App = () => {
     <AuthProvider>
       <Router>
         <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/register" component={Register} />
-          <AuthRoute exact path="/coins" component={CoinDetails} />
-          <AuthRoute exact path="/coin/:id" component={CoinDetail} />
+          <Route exact path='/' component={Home} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/register' component={Register} />
+          <AuthRoute exact path='/coins' component={CoinDetails} />
+          <AuthRoute exact path='/coin/:id' component={CoinDetail} />
         </Switch>
       </Router>
     </AuthProvider>

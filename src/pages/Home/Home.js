@@ -6,10 +6,10 @@ const Home = () => {
   const { currentUser } = useAuth();
 
   return (
-    <div className="home_container">
+    <div className='home_container'>
       <h1>Welcome to CoinSight</h1>
-      <p>Get Crypto Curreny Information With Ease</p>
-      <Link to={currentUser ? '/coins' : '/login'} className="start-btn">
+      <p>Get Crypto Curreny Prices, News and Information Easily</p>
+      <Link to={currentUser ? '/coins' : '/login'} className='start-btn'>
         {currentUser ? 'Get Your Coinsights' : 'Login'}
       </Link>
     </div>

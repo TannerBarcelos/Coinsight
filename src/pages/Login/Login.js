@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
 import { useAuth } from '../../contexts/authContext';
+
 import Popup from '../../components/Popup';
 
 const Login = () => {
@@ -15,13 +16,12 @@ const Login = () => {
     color: '',
   });
 
-  // signUp and signIn actions are available to us since they are functions - the variables will take some time to populate
-  const { signUp } = useAuth();
+  const { signIn } = useAuth();
 
-  // Process Registration
   const onSubmit = async (e) => {
     try {
-      await signUp(emailInp, pwdInp);
+      await signIn(emailInp, pwdInp);
+
       setPopupState({
         success: true,
         color: 'success',
@@ -46,7 +46,7 @@ const Login = () => {
   return (
     <Container
       style={{
-        height: '28rem',
+        height: '30rem',
         width: '40rem',
         margin: '10rem auto',
         background: '#165ba51a',
@@ -55,47 +55,47 @@ const Login = () => {
         position: 'relative',
       }}
     >
-      <h1>Sign Up</h1>
+      <h1>Login</h1>
       {showingPopup && (
         <Popup
           color={popupState.color}
           msg={
             popupState.success
-              ? 'Successfully Registered!'
-              : 'There was a problem registering'
+              ? 'Successfully logged in!'
+              : 'There was a problem signing in'
           }
         />
       )}
       <Form>
         <FormGroup>
-          <Label for="emailInput">Email</Label>
+          <Label for='emailInput'>Email</Label>
           <Input
-            type="email"
-            name="email"
-            id="emailInput"
+            type='email'
+            name='email'
+            id='emailInput'
             onChange={(e) => setEmailInp(e.target.value)}
-            className="coin-inp"
+            className='coin-inp'
           />
-          <Label for="passwordInput">Password</Label>
+          <Label for='passwordInput'>Password</Label>
           <Input
-            type="password"
-            name="password"
-            id="passwordInput"
+            type='password'
+            name='password'
+            id='passwordInput'
             onChange={(e) => setPwdInp(e.target.value)}
-            className="coin-inp"
+            className='coin-inp'
           />
         </FormGroup>
-        <Button onClick={onSubmit}>Register</Button>
+        <Button onClick={onSubmit}>Login</Button>
       </Form>
       <p style={{ display: 'inline-block', marginTop: '1rem' }}>
-        Already a member? Sign in <Link to="/login">here</Link>
+        Not signed up? Sign up <Link to='/register'>here</Link>
       </p>
       <Link
-        to="/"
+        to='/'
         style={{ position: 'absolute', bottom: '1rem', left: '1rem' }}
       >
         <Button>
-          <i className="fas fa-home"></i>
+          <i className='fas fa-home'></i>
         </Button>
       </Link>
     </Container>
