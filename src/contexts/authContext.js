@@ -1,42 +1,49 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { auth } from '../firebase';
+
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
 } from 'firebase/auth';
 
-// Create a new context instance
 const AuthContext = createContext();
 
-// Create our Provider - this is the function which will contain functions and variables we can use globally in the app
 export const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState(
+    JSON.parse(localStorage.getItem('user')),
+  );
 
   const signUp = async (email, password) =>
-    createUserWithEmailAndPassword(auth, email, password); //firebase func for auth with email and pass
+    createUserWithEmailAndPassword(auth, email, password);
 
   const signIn = (email, password) =>
-    signInWithEmailAndPassword(auth, email, password); //firebase func for auth with email and pass
+    signInWithEmailAndPassword(auth, email, password);
 
-  const logOut = () => signOut(auth); //firebase func for auth to logout
+  const logOut = () => signOut(auth);
 
-  // listen for auth changes from the server (Firebase)
   useEffect(() => {
     return auth.onAuthStateChanged((user) => {
-      setCurrentUser(user);
+      user
+        ? localStorage.setItem('user', JSON.stringify(user))
+        : localStorage.removeItem('user');
+      if (user) {
+        setCurrentUser(user);
+      } else {
+        setCurrentUser(null);
+      }
     });
-  }, []);
+  }, [currentUser]);
 
+  // State
   const value = {
     currentUser,
     signUp,
     signIn,
     logOut,
   };
+
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-// Export our context as a hook to use anywhere to hook into our data
 export const useAuth = () => useContext(AuthContext);
-// Can see all auth docs on firebase website - their docs are immaculate
