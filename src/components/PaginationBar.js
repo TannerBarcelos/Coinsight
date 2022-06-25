@@ -3,7 +3,7 @@ import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 const PaginationBar = ({ setPagination, nums, className }) => {
   return (
     <Pagination
-      aria-label="Page navigation example"
+      aria-label='Page navigation example'
       style={{
         marginTop: '10px',
         borderRadius: '3px',
@@ -13,7 +13,7 @@ const PaginationBar = ({ setPagination, nums, className }) => {
       {nums.map((num) => {
         return (
           <PaginationItem key={num} onClick={() => setPagination(num)}>
-            <PaginationLink className="page">{num}</PaginationLink>
+            <PaginationLink className='page'>{num}</PaginationLink>
           </PaginationItem>
         );
       })}

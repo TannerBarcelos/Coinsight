@@ -1,28 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Dosis&display=swap');
 
+:root {
+  --btn-color: rgb(3, 218, 198);
+  --hoverable-state: 0.9;
+  --watchlist-color: #047dfe1b;
+  --card-color: #003b7b35;
+  --card-color-negative: #861c3cae;
+  --card-color-positive: #4bb45944;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: 'Dosis', sans-serif;
-  color: rgba(255, 255, 255, 0.694) !important;
+  color: rgb(3, 218, 198) !important;
 }
 
 html,
 body {
-  background-color: #120f30 !important;
+  background-color: #0a081b !important;
 }
 
 .page {
-  color: #fff !important;
-  background-color: #033469 !important;
+  background-color: transparent !important;
 }
 
-button.cta {
-  background-color: #047dfe5b !important;
+.cta {
+  background-color: var(--btn-color) !important;
+  color: black !important;
   border: none !important;
   width: 3rem;
   border-radius: 5px;
+  text-decoration: none;
+}
+
+.back-btn {
+  color: var(--btn-color) !important;
+  font-size: 1.5rem;
+}
+
+.back-btn:hover {
+  opacity: var(--hoverable-state);
 }
 
 .cta-watch-list {
@@ -36,23 +55,27 @@ button.cta {
 }
 
 button.cta-search {
-  background-color: #047dfe5b !important;
+  background-color: var(--btn-color) !important;
+  color: black !important;
   border: none !important;
   width: 15rem;
   border-radius: 5px !important;
+  text-decoration: none;
 }
 
 .cta-watch {
-  font-size: 1.3rem !important;
+  font-size: 1.5rem !important;
   margin-top: 0.8rem;
+  color: var(--btn-color) !important;
 }
 
 .cta-watch:hover {
   cursor: pointer;
+  opacity: var(--hoverable-state);
 }
 
 button:hover {
-  background-color: #047dfe8c !important;
+  opacity: var(--hoverable-state);
 }
 
 /*****************Home Styles******************/
@@ -83,14 +106,14 @@ button:hover {
   padding: 1rem;
   width: 200px;
   height: 70px;
-  background-color: #bc6ff1;
+  background-color: var(--btn-color);
   font-size: 1.1rem;
   text-decoration: none;
-  color: #fff;
+  color: black !important;
 }
 
 .home_container .start-btn:hover {
-  box-shadow: 0 0 5px 3px #fff8c1;
+  opacity: var(--hoverable-state);
 }
 
 @media screen and (max-width: 500px) {
@@ -216,7 +239,9 @@ th {
   display: flex;
   width: 5rem;
   height: 40px;
-  background-color: #047dfe7a;
+  background-color: var(--btn-color);
+  text-decoration: none !important;
+  color: black !important;
   border-radius: 5px;
   align-items: center;
   justify-content: center;
@@ -224,11 +249,12 @@ th {
 }
 
 .coin-link:hover {
-  text-decoration: none;
+  opacity: 0.9;
 }
 
 .page:hover {
-  background-color: #047dfea5 !important;
+  background-color: rgb(3, 218, 198) !important;
+  color: black !important;
 }
 
 .top-info {
@@ -256,9 +282,9 @@ th {
   height: 94vh;
   position: fixed;
   left: 1rem;
-  background-color: #047dfe1b;
+  border: 1px solid rgba(3, 218, 197, 0.321);
   top: 2rem;
-  border-radius: 10px;
+  border-radius: 5px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -286,12 +312,19 @@ th {
 .watchlist-item {
   width: 90%;
   border-radius: 5px;
-  background-color: #047dfe1c;
+  background-color: var(--card-color);
   margin-bottom: 1rem;
   padding: 1px 12px;
   font-size: 12px;
   line-height: 10px;
   position: relative;
+}
+
+.watchlist-item.negative-change {
+  background-color: var(--card-color-negative);
+}
+.watchlist-item.positive-change {
+  background-color: var(--card-color-positive);
 }
 
 .watchlist-coin-data {
@@ -355,7 +388,7 @@ th {
   display: flex;
   width: 100%;
   min-height: 160px;
-  background-color: #003b7b67;
+  background-color: var(--card-color);
   padding: 1rem;
   border-radius: 5px;
   border: none;
@@ -410,20 +443,18 @@ th {
 .logout-btn {
   position: absolute;
   display: flex;
+  color: var(--btn-color);
   top: 1rem;
   right: 1rem;
-  background-color: #047dfe5b;
-  width: 2rem;
-  height: 2rem;
-  font-size: 1.3rem;
+  font-size: 1.8rem;
   align-items: center;
   justify-content: center;
   border-radius: 5px;
 }
 
 .logout-btn:hover {
-  background-color: #047dfe8a;
   cursor: pointer;
+  opacity: var(--hoverable-state);
 }
 
 .popup-container-success {

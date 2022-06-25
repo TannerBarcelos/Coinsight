@@ -6,11 +6,7 @@ import axios from 'axios';
 
 import { BsFillBookmarkFill } from 'react-icons/bs';
 
-import {
-  removeFromWatchlist,
-  addToWatchlist,
-  clearWatchlist,
-} from '../../utils/watchlistManipulators';
+import { addToWatchlist } from '../../utils/watchlistManipulators';
 
 import { formatPricing } from '../../utils/formatPricing';
 
@@ -26,6 +22,7 @@ import {
 // Component imports
 import PaginationBar from '../../components/PaginationBar';
 import LoadingSpinner from '../../components/LoadingSpinner';
+import Watchlist from '../../components/Watchlist/Watchlist';
 
 const CoinDetails = () => {
   const watchListFromLocalStorage = JSON.parse(
@@ -93,52 +90,14 @@ const CoinDetails = () => {
   return (
     <div>
       <Container className='coins_container'>
-        <div className='watchlist'>
-          <div className='watchlist-top-container'>
-            <h6>My Watchlist</h6>
-            {watchList && watchList.length > 0 ? (
-              <Button
-                className='cta cta-watch-list'
-                onClick={() => clearWatchlist(setWatchList)}
-              >
-                Clear
-              </Button>
-            ) : null}
-          </div>
-          {watchList && watchList.length > 0 ? (
-            watchList.map((coin) => (
-              <div className='watchlist-item' key={coin.id}>
-                <div className='watchlist-coin-data'>
-                  <img src={coin.image} alt={coin.id} />
-                  <p>
-                    {coin.id} ({coin.symbol})
-                  </p>
-                </div>
-                <p>Current Market Cap Ranking: {coin.market_cap_rank}</p>
-                <p>Current Price (usd): ${coin.current_price}</p>
-                <p>
-                  Price Change % (Last 24 hours):{' '}
-                  {coin.price_change_percentage_24h}
-                </p>
-                <i
-                  class='fas fa-info-circle'
-                  onClick={(e) => history.push(`/coin/${coin.id}`)}
-                  className='fas fa-info-circle more-info'
-                ></i>
-                <i
-                  onClick={(e) => removeFromWatchlist(e, coin.id, setWatchList)}
-                  className='far fa-times-circle remove-coin'
-                ></i>
-              </div>
-            ))
-          ) : (
-            <p className='addTW'>Add to your watchlist</p>
-          )}
-        </div>
-
+        <Watchlist watchList={watchList} setWatchList={setWatchList} />
         {isLoading && <LoadingSpinner />}
         <h1>All Coins</h1>
-        <i className='fas fa-sign-out-alt logout-btn' onClick={logout}></i>
+        <i
+          className='fas fa-sign-out-alt logout-btn'
+          onClick={logout}
+          title='Logout'
+        ></i>
         <div
           style={{
             width: '100%',

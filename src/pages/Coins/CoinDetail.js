@@ -93,13 +93,10 @@ const CoinDetail = ({ match, location }) => {
             </div>
           </div>
           <Link to='/coins'>
-            <Button className='cta'>
-              <i class='fas fa-arrow-left'></i>
-            </Button>
+            <i class='fas fa-arrow-left back-btn'></i>
           </Link>
           <p
             style={{
-              color: '#fff',
               marginTop: '1rem',
             }}
           >
@@ -133,7 +130,6 @@ const CoinDetail = ({ match, location }) => {
               newsArticle.image &&
               newsArticle.image.thumbnail &&
               newsArticle.image.thumbnail.contentUrl;
-            console.log(articleImg);
             return (
               <div className='news-card'>
                 {articleImg && <img src={articleImg} alt='article-image' />}

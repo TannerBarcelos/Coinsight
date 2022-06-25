@@ -11,7 +11,7 @@ const AuthRoute = ({ component: Component, ...rest }) => {
         return currentUser ? (
           <Component {...props} />
         ) : (
-          <Redirect to="/login" />
+          <Redirect to='/login' />
         );
       }}
     />
@@ -19,7 +19,3 @@ const AuthRoute = ({ component: Component, ...rest }) => {
 };
 
 export default AuthRoute;
-
-/**
- * This is how you wrap components client side to make them protected within auth - uses context api here
- */
