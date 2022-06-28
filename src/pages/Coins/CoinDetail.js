@@ -2,20 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Line } from 'react-chartjs-2';
 import axios from 'axios';
-import { Button, Container } from 'reactstrap';
+import { Container } from 'reactstrap';
 import PaginationBar from '../../components/PaginationBar';
 import LoadingSpinner from '../../components/LoadingSpinner';
-
 import {
   convertISOString,
   createDatePriceCollection,
-} from '../../utils/dateConversion';
-
+} from '../../utils/formatters/dateConversion';
 import {
   slicePathName,
   sliceAndUpperCasePathName,
-} from '../../utils/slicePathName';
-
+} from '../../utils/formatters/slicePathName';
 import { dataObj, optionsObj } from '../../chartConfig/chartConfig';
 
 const CoinDetail = ({ match, location }) => {

@@ -3,13 +3,9 @@ import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { useAuth } from '../../contexts/authContext';
 import axios from 'axios';
-
 import { BsFillBookmarkFill } from 'react-icons/bs';
-
 import { addToWatchlist } from '../../utils/watchlistManipulators';
-
-import { formatPricing } from '../../utils/formatPricing';
-
+import { formatPricing } from '../../utils/formatters/formatPricing';
 import {
   Button,
   Container,
@@ -18,11 +14,10 @@ import {
   InputGroupAddon,
   Input,
 } from 'reactstrap';
-
-// Component imports
 import PaginationBar from '../../components/PaginationBar';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import Watchlist from '../../components/Watchlist/Watchlist';
+import TrendingList from '../../components/TrendingList/TrendingList';
 
 const CoinDetails = () => {
   const watchListFromLocalStorage = JSON.parse(
@@ -56,9 +51,11 @@ const CoinDetails = () => {
   useEffect(() => {
     const getTrendingCoins = async () => {
       try {
-        const { data } = await axios.get(`${process.env.REACT_APP_TRENDING}`);
-        setTrendingCoins([...data]);
-        console.log(trendingCoins);
+        const {
+          data: { coins },
+        } = await axios.get(`${process.env.REACT_APP_TRENDING}`);
+        console.log(coins);
+        setTrendingCoins(coins);
       } catch (error) {
         console.log(error);
       }
@@ -91,6 +88,7 @@ const CoinDetails = () => {
     <div>
       <Container className='coins_container'>
         <Watchlist watchList={watchList} setWatchList={setWatchList} />
+        <TrendingList trendingList={trendingCoins} />
         {isLoading && <LoadingSpinner />}
         <h1>All Coins</h1>
         <i

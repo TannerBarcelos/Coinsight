@@ -1,9 +1,4 @@
-const WatchlistItem = ({
-  coin,
-  history,
-  setWatchList,
-  removeFromWatchlist,
-}) => {
+const CoinListItem = ({ coin, history, setWatchList, removeFromWatchlist }) => {
   const changeInValue = coin.price_change_percentage_24h < 0;
   return (
     <div
@@ -33,4 +28,4 @@ const WatchlistItem = ({
     </div>
   );
 };
-export default WatchlistItem;
+export default CoinListItem;

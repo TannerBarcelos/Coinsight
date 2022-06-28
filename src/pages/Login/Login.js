@@ -2,12 +2,10 @@ import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, Container } from 'reactstrap';
 import { useAuth } from '../../contexts/authContext';
-
 import Popup from '../../components/Popup';
 
 const Login = () => {
   const history = useHistory();
-
   const [emailInp, setEmailInp] = useState('');
   const [pwdInp, setPwdInp] = useState('');
   const [showingPopup, setShowingPopup] = useState(false);
@@ -15,7 +13,6 @@ const Login = () => {
     success: false,
     color: '',
   });
-
   const { signIn } = useAuth();
 
   const onSubmit = async (e) => {

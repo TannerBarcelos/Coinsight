@@ -291,7 +291,22 @@ th {
   overflow: scroll;
 }
 
-.watchlist h6 {
+.trending-list {
+  width: 16rem;
+  height: 94vh;
+  position: fixed;
+  right: 1rem;
+  border: 1px solid rgba(3, 218, 197, 0.321);
+  top: 2rem;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: scroll;
+}
+
+.watchlist h6,
+.trending-list h6 {
   font-size: 1.5rem;
 }
 .watchlist p.addTW {
@@ -299,7 +314,8 @@ th {
   padding: 0.5rem;
   color: rgba(128, 128, 128, 0.637) !important;
 }
-.watchlist-top-container {
+.watchlist-top-container,
+.trendinglist-top-container {
   width: 100%;
   display: flex;
   height: 2rem;
@@ -309,7 +325,8 @@ th {
   margin: 1rem 0;
 }
 
-.watchlist-item {
+.watchlist-item,
+.trendinglist-item {
   width: 90%;
   border-radius: 5px;
   background-color: var(--card-color);
@@ -323,11 +340,13 @@ th {
 .watchlist-item.negative-change {
   background-color: var(--card-color-negative);
 }
+
 .watchlist-item.positive-change {
   background-color: var(--card-color-positive);
 }
 
-.watchlist-coin-data {
+.watchlist-coin-data,
+.trending-coin-data {
   width: 100%;
   height: 3rem;
   display: flex;
@@ -365,12 +384,22 @@ th {
   color: #047dfe !important;
 }
 
+.more-info-trend {
+  position: absolute;
+  bottom: 1.8rem;
+  right: 0;
+  font-size: 1rem;
+  padding: 0.5rem;
+  color: #047dfe !important;
+}
+
 .coin-inp {
   color: #047dfe !important;
 }
 
 .more-info,
-.remove-coin {
+.remove-coin,
+.more-info-trend {
   cursor: pointer;
 }
 

@@ -1,18 +1,14 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-
 import { Button } from 'reactstrap';
-
 import {
   removeFromWatchlist,
   clearWatchlist,
 } from '../../utils/watchlistManipulators';
-
 import WatchlistItem from './WatchlistItem';
 
 const Watchlist = ({ watchList, setWatchList }) => {
   const history = useHistory();
-
   return (
     <div className='watchlist'>
       <div className='watchlist-top-container'>
